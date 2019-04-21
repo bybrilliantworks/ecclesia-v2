@@ -744,13 +744,13 @@ ol.linenums {
         padding-top: 20px;
         padding-bottom: 20px;
     }
-    
+
     .navbar ul li.active a {
         background: transparent;
         border-top: 2px solid #22BAA0;
         padding-top: 18px;
     }
-    
+
     .navbar.whiteHeader ul li.active a {
         color: #333;
     }
@@ -772,7 +772,7 @@ ol.linenums {
     width: 100%;
     height: 100%;
     position: relative;
-    background: url('../images/bg.jpg') fixed;
+    background: url('../images/akira-hojo-502567-unsplash.jpg') fixed;
     background-size: cover;
 }
 
@@ -787,7 +787,7 @@ ol.linenums {
     position: absolute;
     top: 50%;
     bottom: 0;
-    left: 0; 
+    left: 0;
     right: 0;
     margin: 0 auto;
     height: 257px;
@@ -809,7 +809,7 @@ ol.linenums {
 
 .home-text h1:after {
     width: 80px;
-    height: 2px; 
+    height: 2px;
     background: #f1f1f1;
     margin: 15px auto 15px auto;
     display: block;
@@ -824,7 +824,7 @@ ol.linenums {
     .home-text h1 {
         font-size: 30px;
     }
-    
+
     .home-text p {
         font-size: 16px;
     }
@@ -833,13 +833,13 @@ ol.linenums {
 .scroller {
     position: absolute;
     bottom: 10%;
-    left: 0; 
+    left: 0;
     right: 0;
     width: 18px;
     margin: 0 auto;
     color: #fff;
     text-align: center;
-    
+
 }
 
 .mouse {
