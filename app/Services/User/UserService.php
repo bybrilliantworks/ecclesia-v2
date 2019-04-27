@@ -4,6 +4,7 @@ namespace App\Services\User;
 
 use App\Repositories\User\UserRepositoryInterface as UserRepository;
 use App\Services\User\UserServiceInterface;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
@@ -46,6 +47,11 @@ class UserService implements UserServiceInterface
     public function listUsers()
     {
         return $this->userRepository->fetchAll();
+    }
+
+    public function getUser(int $id): User
+    {
+        return $this->userRepository->fetchById($id);
     }
 
 }

@@ -7,6 +7,7 @@ use App\User;
 
 class UserRepository implements UserRepositoryInterface
 {
+    private $user;
 
     public function __construct(User $user)
     {
@@ -21,6 +22,11 @@ class UserRepository implements UserRepositoryInterface
     public function fetchAll()
     {
         return $this->user->all();
+    }
+
+    public function fetchById(int $id): User
+    {
+        return $this->user->with('church')->find($id);
     }
 
 }
