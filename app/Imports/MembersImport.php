@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Member;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class MembersImport implements ToModel
+class MembersImport implements ToModel, WithHeadingRow
 {
     /**
      * @param array $row
@@ -14,19 +15,31 @@ class MembersImport implements ToModel
      */
     public function model(array $row)
     {
+        $genderMap = ['M' => 'male', 'F' => 'female'];
+        $employmentStatusMap = ['UNEMPLOYED' => 'unemployed', 'STUDENT' => 'student'];
+
+        if (array_key_exists($row['occupation'], $employmentStatusMap)) {
+            $employmentStatus = $employmentStatusMap[$row['occupation']];
+        } else if (trim($row['occupation']) === '') {
+            $employmentStatus = 'other';
+        } else {
+            $employmentStatus = 'employed';
+        }
+
         return new Member([
-            'name' => $row[1],
-            'date_of_birth' => $row[2],
-            'email' => strtolower($row[8]),
+            'name' => $row['surname'] . " " . $row['first_name'],
+            'surname' => $row['surname'],
+            'first_name' => $row['first_name'],
+            'gender' => $row['sex'] ? $genderMap[$row['sex']] : 'other',
+            'email' => strtolower($row['email']),
             'church_id' => auth()->user()->church_id,
-            'age_group' => $row[5],
-            'certified_code' => $row[4],
-            'address' => $row[13],
-            'mobile_number' => $row[6],
-            'marital_status' => $row[16],
-            'occupation' => $row[20],
-            'birthday' => date('Y-m-d', strtotime($row[2])),
-            'gender' => strtolower($row[3]),
+            'address' => $row['address'] ? $row['address'] : 'Not Available',
+            'neighbourhood' => $row['area'],
+            'mobile_number' => $row['mobile_number'] ? $row['mobile_number'] : 'Not Available',
+            'state' => $row['state'],
+            'marital_status' => $row['relationship_status'] ? $row['relationship_status'] : 'Not Available',
+            'employment_status' => $employmentStatus,
+            'occupation' => $row['occupation'],
             'created_at' => \Carbon\Carbon::now(),
             'updated_at' => \Carbon\Carbon::now(),
         ]);

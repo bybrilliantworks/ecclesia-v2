@@ -24,15 +24,12 @@ class Member extends Model
         'mobile_number',
         'gender',
         'marital_status',
+        'address',
         'age_group',
         'occupation',
         'birthday',
-        'certified_code',
+        'membership_number',
         'employment_status',
-        'organisation',
-        'wedding_anniversary',
-        'greatest_contribution',
-        'office_address',
     ];
 
     public function validate(array $members)
