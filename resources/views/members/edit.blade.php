@@ -81,6 +81,7 @@
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="gender" class="control-label col-sm-2">Gender</label>
                                     <div class="col-sm-10">
@@ -88,6 +89,21 @@
                                             <option value="" >Select gender</option>
                                             <option value="male" {{ ($member->gender == 'male' ? "selected":"") }}>Male</option>
                                             <option value="female" {{ ($member->gender == 'female' ? "selected":"") }}>Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="employmentStatus" class="control-label col-sm-2">Employment Status</label>
+                                    <div class="col-sm-10">
+                                        <select name="employmentStatus" id="employmentStatus" class="form-control" required>
+                                            <option value="">Select...</option>
+                                            <option {{ ($member->employment_status == 'employed' ? "selected":"") }} value="employed">Employed</option>
+                                            <option {{ ($member->employment_status == 'unemployed' ? "selected":"") }} value="unemployed">Unemploymed</option>
+                                            <option {{ ($member->employment_status == 'self-employed' ? "selected":"") }} value="self-employed">Self-employed</option>
+                                            <option {{ ($member->employment_status == 'student' ? "selected":"") }} value="student">Student</option>
+                                            <option {{ ($member->employment_status == 'retired' ? "selected":"") }} value="retired">Retiree</option>
+                                            <option {{ ($member->employment_status == 'other' ? "selected":"") }} value="other">other</option>
                                         </select>
                                     </div>
                                 </div>
@@ -106,9 +122,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="certifiedCode" class="control-label col-sm-2">Certified Membership Number</label>
+                                    <label for="membershipNumber" class="control-label col-sm-2">Membership Number</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="certifiedCode" class="form-control" placeholder="Certified Membership number" value="{{ $member->certified_code }}">
+                                        <input type="text" name="membershipNumber" class="form-control" placeholder="Membership number" value="{{ $member->membership_number }}">
                                     </div>
                                 </div>
                                 <div class="form-actions pull-right">

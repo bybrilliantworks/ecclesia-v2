@@ -28,6 +28,7 @@ class Member extends Model
         'age_group',
         'occupation',
         'birthday',
+        'date_joined',
         'membership_number',
         'employment_status',
     ];

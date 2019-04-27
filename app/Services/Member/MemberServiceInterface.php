@@ -13,4 +13,8 @@ interface MemberServiceInterface
     public function createMember(array $member): Member;
 
     public function updateMember(array $member, int $id): bool;
+
+    public function getAggregates(): array;
+
+    public function getCertifiedMemberChart();
 }

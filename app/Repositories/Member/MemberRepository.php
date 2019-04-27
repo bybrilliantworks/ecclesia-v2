@@ -27,7 +27,7 @@ class MemberRepository implements MemberRepositoryInterface
 
     public function createMember(array $member)
     {
-        return $this->member->createMember($member);
+        return $this->member->create($member);
     }
 
     public function getMember(int $id)

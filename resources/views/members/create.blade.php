@@ -91,6 +91,20 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="employmentStatus" class="control-label col-sm-2">Employment Status</label>
+                                    <div class="col-sm-10">
+                                        <select name="employmentStatus" id="employmentStatus" class="form-control" required>
+                                            <option value="">Select...</option>
+                                            <option value="employed">Employed</option>
+                                            <option value="unemployed">Unemploymed</option>
+                                            <option value="self-employed">Self-employed</option>
+                                            <option value="student">Student</option>
+                                            <option value="retired">Retiree</option>
+                                            <option value="other">other</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="occupation" class="control-label col-sm-2">Occupation</label>
@@ -106,9 +120,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="certifiedCode" class="control-label col-sm-2">Certified Membership Number</label>
+                                    <label for="membershipNumber" class="control-label col-sm-2">Membership Number</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="certifiedCode" class="form-control" placeholder="Certified Membership number" value="{{ old('certifiedCode') }}">
+                                        <input type="text" name="membershipNumber" class="form-control" placeholder="Membership number" value="{{ old('membershipNumber') }}">
                                     </div>
                                 </div>
                                 <div class="form-actions pull-right">

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
-use Illuminate\Http\Request;
 use App\Services\Member\MemberServiceInterface as MemberService;
 use App\Services\User\UserServiceInterface as UserService;
 
@@ -30,8 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recentlyJoinedMembers = $this->memberService->fetchAll();
+        $aggregates = $this->memberService->getAggregates();
+        $aggregates['chart'] = $this->memberService->getCertifiedMemberChart();
         $loggedInUser = $this->userService->getUser(auth()->user()->id);
-        return view('home')->with(['recent_joined_members' => $recentlyJoinedMembers, 'user' => $loggedInUser]);
+        return view('home')->with($aggregates);
     }
 }

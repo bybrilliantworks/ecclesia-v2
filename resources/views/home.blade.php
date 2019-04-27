@@ -24,7 +24,7 @@
                             </div>
                             <div class="info-box-progress">
                                 <div class="progress progress-xs progress-squared bs-n">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style={{ "width:" . ($total / 1000) * 100 . "%"}}>
                                     </div>
                                 </div>
                             </div>
@@ -35,15 +35,15 @@
                     <div class="panel info-box panel-white">
                         <div class="panel-body">
                             <div class="info-box-stats">
-                                <p class="counter">0</p>
-                                <span class="info-box-title">Events this month</span>
+                                <p class="counter">{{ $total }}</p>
+                                <span class="info-box-title">Total number of members</span>
                             </div>
                             <div class="info-box-icon">
-                                <i class="icon-calendar"></i>
+                                <i class="icon-users"></i>
                             </div>
                             <div class="info-box-progress">
                                 <div class="progress progress-xs progress-squared bs-n">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={{ "width:" . ($total / 1000) * 100 . "%"}}>
                                     </div>
                                 </div>
                             </div>
@@ -54,15 +54,15 @@
                     <div class="panel info-box panel-white">
                         <div class="panel-body">
                             <div class="info-box-stats">
-                                <p>$<span class="counter">0</span></p>
-                                <span class="info-box-title">Total offering this month</span>
+                                <p><span class="counter">{{ $married }}</span></p>
+                                <span class="info-box-title">Total number of married members</span>
                             </div>
                             <div class="info-box-icon">
-                                <i class="icon-money"></i>
+                                <i class="icon-users"></i>
                             </div>
                             <div class="info-box-progress">
                                 <div class="progress progress-xs progress-squared bs-n">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style={{ "width:" . ($married / $total) * 100 . "%"}}>
                                     </div>
                                 </div>
                             </div>
@@ -73,15 +73,15 @@
                     <div class="panel info-box panel-white">
                         <div class="panel-body">
                             <div class="info-box-stats">
-                                <p>$<span class="counter">0</span></p>
-                                <span class="info-box-title">Total tithe this month</span>
+                                <p><span class="counter">{{ $single }}</span></p>
+                                <span class="info-box-title">Total number of single members</span>
                             </div>
                             <div class="info-box-icon">
-                                <i class="icon-money"></i>
+                                <i class="icon-users"></i>
                             </div>
                             <div class="info-box-progress">
                                 <div class="progress progress-xs progress-squared bs-n">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style={{ "width:" . ($single / $total) * 100 . "%"}}>
                                     </div>
                                 </div>
                             </div>
@@ -92,14 +92,19 @@
             <div class="row">
                 <div class="col-lg-9 col-md-12">
                     <div class="panel panel-white">
-
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Members Distribution by Certified Number</h4>
+                        </div>
+                        <div class="panel-body">
+                            {!! $chart->container() !!}
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-lg-12 col-md-12">
                     <div class="panel panel-white">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Recently Joined Members</h4>
+                            <h4 class="panel-title">Recently Added Members</h4>
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive project-stats">
@@ -142,5 +147,10 @@
     <script src="{{url("assets/plugins/metrojs/MetroJs.min.js")}}"></script>
     <script src="{{url("assets/js/modern.min.js")}}"></script>
     <script src="{{url("assets/js/pages/dashboard.js")}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+
+
+    {!! $chart->script() !!}
+
 
 @endsection

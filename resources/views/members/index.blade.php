@@ -74,10 +74,10 @@
                                         <td>{{$member->marital_status}}</td>
 
                                         <td>
-                                            @if($member->certified_code == '')
+                                            @if($member->membership_number == '')
                                                 <span class="badge badge-danger">Not Certified</span>
                                             @else
-                                                <span class="badge badge-success">Certified {{ $member->certified_code }}</span>
+                                                <span class="badge badge-success">Certified {{ $member->membership_number }}</span>
                                             @endif
 
                                         </td>
