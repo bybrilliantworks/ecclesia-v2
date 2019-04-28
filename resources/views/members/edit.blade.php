@@ -37,13 +37,13 @@
                                 <div class="form-group">
                                     <label for="firstName" class="control-label col-sm-2">First Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="firstName" name="firstName" value="{{ $member->first_name }}" placeholder="First Name" required>
+                                        <input type="text" class="form-control" id="firstName" name="first_name" value="{{ $member->first_name }}" placeholder="First Name" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="lastName" class="control-label col-sm-2">Last Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="lastName" name="lastName" value="{{ $member->last_name }}" placeholder="Last Name" required>
+                                        <input type="text" class="form-control" id="lastName" name="last_name" value="{{ $member->last_name }}" placeholder="Last Name" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -61,19 +61,19 @@
                                 <div class="form-group">
                                     <label for="address" class="control-label col-sm-2">Birthday</label>
                                     <div class="col-sm-10">
-                                        <input type="date" class="form-control" id="address" name="birthday" value="{{ $member->birthday }}" placeholder="Birthday" required>
+                                        <input type="date" class="form-control" id="address" name="birthday" value="{{ $member->birthday }}" placeholder="Birthday">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="mobileNumber" class="control-label col-sm-2">Mobile Number</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" value="{{ $member->mobile_number }}" placeholder="Mobile Number" required>
+                                        <input type="text" class="form-control" id="mobileNumber" name="mobile_number" value="{{ $member->mobile_number }}" placeholder="Mobile Number" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="maritalStatus" class="control-label col-sm-2">Marital Status</label>
                                     <div class="col-sm-10">
-                                        <select name="maritalStatus" id="maritalStatus" class="form-control" value="{{ $member->marital_status }}" required>
+                                        <select name="marital_status" id="maritalStatus" class="form-control" value="{{ $member->marital_status }}">
                                             <option value="">Select marital status</option>
                                             <option value="single" {{ ($member->marital_status == 'single' ? "selected":"") }}>Single</option>
                                             <option value="married" {{ ($member->marital_status == 'married' ? "selected":"") }}>Married</option>
@@ -96,7 +96,7 @@
                                 <div class="form-group">
                                     <label for="employmentStatus" class="control-label col-sm-2">Employment Status</label>
                                     <div class="col-sm-10">
-                                        <select name="employmentStatus" id="employmentStatus" class="form-control" required>
+                                        <select name="employment_status" id="employmentStatus" class="form-control">
                                             <option value="">Select...</option>
                                             <option {{ ($member->employment_status == 'employed' ? "selected":"") }} value="employed">Employed</option>
                                             <option {{ ($member->employment_status == 'unemployed' ? "selected":"") }} value="unemployed">Unemploymed</option>
@@ -111,20 +111,20 @@
                                 <div class="form-group">
                                     <label for="occupation" class="control-label col-sm-2">Occupation</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="occupation" id="occupation" class="form-control" value="{{ $member->occupation }}" placeholder="Occupation" required>
+                                        <input type="text" name="occupation" id="occupation" class="form-control" value="{{ $member->occupation }}" placeholder="Occupation">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="dateJoined" class="control-label col-sm-2">Date Joined</label>
                                     <div class="col-sm-10">
-                                        <input type="date" name="dateJoined" class="form-control" placeholder="Date joined" value="{{ $member->date_joined }}" required>
+                                        <input type="date" name="date_joined" class="form-control" placeholder="Date joined" value="{{ $member->date_joined }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="membershipNumber" class="control-label col-sm-2">Membership Number</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="membershipNumber" class="form-control" placeholder="Membership number" value="{{ $member->membership_number }}">
+                                        <input type="text" name="membership_number" class="form-control" placeholder="Membership number" value="{{ $member->membership_number }}">
                                     </div>
                                 </div>
                                 <div class="form-actions pull-right">

@@ -49,7 +49,7 @@
                 <div class="col-md-3 center">
                     <div class="login-box">
                         @yield('content')
-                        <p class="text-center m-t-xs text-sm">2015 &copy; Made by Enthronement Tech.</p>
+                        <p class="text-center m-t-xs text-sm">2019 &copy; Made by Enthronement Tech.</p>
                     </div>
                 </div>
             </div><!-- Row -->

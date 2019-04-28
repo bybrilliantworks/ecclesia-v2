@@ -13,6 +13,8 @@ class MemberService implements MemberServiceInterface
     private $memberRepository;
     const MARRIED = 'married';
     const SINGLE = 'single';
+    const FEMALE = 'female';
+    const MALE = 'male';
 
     public function __construct(MemberRepository $memberRepository)
     {
@@ -57,31 +59,75 @@ class MemberService implements MemberServiceInterface
         return $this->memberRepository->updateMember($member, $id);
     }
 
-    private function buildMember(array $member): array
-    {
-        return [
-            'name' => $member['firstName'] . " " . $member['lastName'],
-            'first_name' => $member['firstName'],
-            'last_name' => $member['lastName'],
-            'email' => $member['email'],
-            'address' => $member['address'],
-            'birthday' => $member['birthday'],
-            'marital_status' => $member['maritalStatus'],
-            'church_id' => auth()->user()->church_id,
-            'date_joined' => $member['dateJoined'],
-            'mobile_number' => $member['mobileNumber'],
-            'employment_status' => $member['employmentStatus'],
-            'occupation' => $member['occupation'],
-            'gender' => $member['gender'],
-            'membership_number' => $member['membershipNumber'],
-        ];
-    }
-
     public function getCertifiedMemberChart()
     {
         $chart = new CertifiedMemberChart;
         $chart->labels(['Certified', 'Not Certified']);
-        $chart->dataset('Members distribution by certified number', 'bar', [1, 2])->backgroundColor(['#5DD6B4', '#D6516E']);
+        $members = $this->memberRepository->fetchAll()->toArray();
+        $certifiedMembers = Arr::where($members, function ($member, $key) {
+            return $member['membership_number'] !== '' && $member['membership_number'] !== null;
+        });
+
+        $notCertifiedMembers = Arr::where($members, function ($member, $key) {
+            return $member['membership_number'] === '' || is_null($member['membership_number']);
+        });
+
+        $chart->dataset('Membership distribution by status', 'doughnut', [count($certifiedMembers), count($notCertifiedMembers)])
+            ->backgroundColor(['#5DD6B4', '#D6516E']);
+
         return $chart;
+    }
+
+    public function getMemberGenderChart()
+    {
+        $chart = new CertifiedMemberChart;
+        $chart->labels(['Female', 'Male']);
+        $members = $this->memberRepository->fetchAll()->toArray();
+        $femaleMembers = Arr::where($members, function ($member, $key) {
+            return $member['gender'] === self::FEMALE;
+        });
+
+        $maleMembers = Arr::where($members, function ($member, $key) {
+            return $member['gender'] === self::MALE;
+        });
+
+        $chart->dataset('Membership distribution by gender', 'doughnut', [count($femaleMembers), count($maleMembers)])
+            ->backgroundColor(['#DD85BA', '#739ADD']);
+
+        return $chart;
+    }
+
+    public function saveProfile(array $profileData): void
+    {
+        $member = $this->memberRepository->findByMobileNumber($profileData['mobile_number']);
+
+        if ($member) {
+            $this->memberRepository->updateMember($profileData, $member->id);
+        }
+
+        if (!$member) {
+            $profileData['church_id'] = 1;
+            $this->memberRepository->createMember($profileData);
+        }
+    }
+
+    private function buildMember(array $member): array
+    {
+        return [
+            'name' => $member['first_name'] . " " . $member['last_name'],
+            'first_name' => $member['first_name'],
+            'last_name' => $member['last_name'],
+            'email' => $member['email'],
+            'address' => $member['address'],
+            'birthday' => $member['birthday'],
+            'marital_status' => $member['marital_status'],
+            'church_id' => auth()->user()->church_id,
+            'date_joined' => $member['date_joined'],
+            'mobile_number' => $member['mobile_number'],
+            'employment_status' => $member['employment_status'],
+            'occupation' => $member['occupation'],
+            'gender' => $member['gender'],
+            'membership_number' => $member['membership_number'],
+        ];
     }
 }

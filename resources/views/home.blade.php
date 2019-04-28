@@ -90,18 +90,28 @@
                 </div>
             </div><!-- Row -->
             <div class="row">
-                <div class="col-lg-9 col-md-12">
+                <div class="col-lg-6 col-md-12">
                     <div class="panel panel-white">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Members Distribution by Certified Number</h4>
+                            <h4 class="panel-title">Membership distribution by status</h4>
                         </div>
                         <div class="panel-body">
-                            {!! $chart->container() !!}
+                            {!! $membershipChartByStatus->container() !!}
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">Membership distribution by gender</h4>
+                            </div>
+                            <div class="panel-body">
+                                {!! $memberGenderChart->container() !!}
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="col-lg-12 col-md-12">
+                {{--  <div class="col-lg-12 col-md-12">
                     <div class="panel panel-white">
                         <div class="panel-heading">
                             <h4 class="panel-title">Recently Added Members</h4>
@@ -126,7 +136,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  --}}
             </div>
         </div><!-- Main Wrapper -->
         <div class="page-footer">
@@ -150,7 +160,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
 
 
-    {!! $chart->script() !!}
+    {!! $membershipChartByStatus->script() !!}
 
-
+    {!! $memberGenderChart->script() !!}
 @endsection

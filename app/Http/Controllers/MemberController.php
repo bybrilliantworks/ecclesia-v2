@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\MembersImport;
+use App\Http\Requests\SaveMemberProfileRequest;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
+use App\Imports\MembersImport;
+use App\Services\Member\MemberServiceInterface as MemberService;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Services\Member\MemberServiceInterface as MemberService;
 
 class MemberController extends Controller
 {
@@ -15,7 +16,7 @@ class MemberController extends Controller
 
     public function __construct(MemberService $memberService)
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['save']);
         $this->memberService = $memberService;
     }
 
@@ -63,5 +64,12 @@ class MemberController extends Controller
         Excel::import(new MembersImport, request()->file('file'));
 
         return redirect('/members')->with('success', 'All good!');
+    }
+
+    public function save(SaveMemberProfileRequest $request)
+    {
+        $member = $this->memberService->saveProfile($request->all());
+
+        return \redirect('/member/profile')->with('success', 'Your membership profile has been updated');
     }
 }

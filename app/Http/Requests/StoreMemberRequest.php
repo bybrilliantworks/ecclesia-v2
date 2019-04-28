@@ -24,11 +24,12 @@ class StoreMemberRequest extends Request
     public function rules()
     {
         return [
-            'firstName' => 'required|string',
-            'lastName' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'email' => 'required|email|unique:members',
-            'maritalStatus' => 'required|string',
+            'marital_status' => 'required|string',
             'address' => 'required|string',
+            'mobile_number' => 'required|string|unique:members',
         ];
     }
 }

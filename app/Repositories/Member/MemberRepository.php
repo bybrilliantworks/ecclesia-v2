@@ -46,4 +46,9 @@ class MemberRepository implements MemberRepositoryInterface
         return false;
     }
 
+    public function findByMobileNumber(string $mobileNumber): ?Member
+    {
+        return $this->member->where('mobile_number', $mobileNumber)->first();
+    }
+
 }

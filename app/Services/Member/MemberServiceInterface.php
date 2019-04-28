@@ -17,4 +17,8 @@ interface MemberServiceInterface
     public function getAggregates(): array;
 
     public function getCertifiedMemberChart();
+
+    public function getMemberGenderChart();
+
+    public function saveProfile(array $member): void;
 }

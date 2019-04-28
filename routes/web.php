@@ -9,17 +9,21 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/member/profile', function () {
+    return view('members.profile-edit');
+});
+
+Route::post('/member/profile', 'MemberController@save');
+
 Route::auth();
 
-
-
-Route::group(['middleware' => 'auth'], function(){
+Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', 'HomeController@index');
 
@@ -35,16 +39,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/projects/create', 'ProjectController@create');
     Route::post('/projects', 'ProjectController@store');
 
-
     Route::get('/products', 'ProductController@index');
     Route::get('/products/create', 'ProductController@create');
     Route::post('/products', 'ProductController@store');
 
-
     Route::get('/assets', 'AssetController@index');
     Route::get('/assets/create', 'AssetController@create');
     Route::post('/assets', 'AssetController@store');
-
 
     Route::get('/attendance/store', 'AttendanceController@store');
 

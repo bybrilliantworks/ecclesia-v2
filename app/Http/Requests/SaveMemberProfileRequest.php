@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMemberRequest extends Request
+class SaveMemberProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,6 +29,13 @@ class UpdateMemberRequest extends Request
             'email' => 'required|email',
             'marital_status' => 'required|string',
             'address' => 'required|string',
+            'mobile_number' => 'required|string',
+            'gender' => 'required|string',
+            'neighbourhood' => 'required|string',
+            'employment_status' => 'required|string',
+            'occupation' => 'required|string',
+            'marital_status' => 'required|string',
+            'birthday' => 'required|string'
         ];
     }
 }

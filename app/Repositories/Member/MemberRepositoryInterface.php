@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Member;
 
+use App\Member;
+
 interface MemberRepositoryInterface
 {
     public function fetchAll();
@@ -12,5 +14,5 @@ interface MemberRepositoryInterface
 
     public function createMember(array $member);
 
-    // public function deleteMember(int $id);
+    public function findByMobileNumber(string $phoneNumber): ?Member;
 }

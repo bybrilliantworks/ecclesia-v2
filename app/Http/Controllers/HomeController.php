@@ -29,7 +29,8 @@ class HomeController extends Controller
     public function index()
     {
         $aggregates = $this->memberService->getAggregates();
-        $aggregates['chart'] = $this->memberService->getCertifiedMemberChart();
+        $aggregates['membershipChartByStatus'] = $this->memberService->getCertifiedMemberChart();
+        $aggregates['memberGenderChart'] = $this->memberService->getMemberGenderChart();
         $loggedInUser = $this->userService->getUser(auth()->user()->id);
         return view('home')->with($aggregates);
     }
