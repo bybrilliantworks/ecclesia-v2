@@ -41,7 +41,7 @@
     </div>
 
     <div class="form-group{{ $errors->has('mobile_number') ? ' has-error' : '' }}">
-        <input type="text" class="form-control" name="mobile_number" value="{{ old('mobile_number') }}" placeholder="Your mobile number" required>
+        <input type="tel" class="form-control" name="mobile_number" value="{{ old('mobile_number') }}" placeholder="Your mobile number" required>
 
         @if ($errors->has('mobile_number'))
             <span class="help-block">
@@ -51,7 +51,7 @@
     </div>
 
     <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-        <input type="tel" class="form-control" name="address" value="{{ old('address') }}" placeholder="Your address" required>
+        <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="Your address" required>
 
         @if ($errors->has('address'))
             <span class="help-block">
