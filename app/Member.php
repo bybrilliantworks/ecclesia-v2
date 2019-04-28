@@ -41,8 +41,6 @@ class Member extends Model
     protected static function boot()
     {
         parent::boot();
-
-        static::addGlobalScope(new ChurchScope);
     }
 
     public function primaryDepartment()
