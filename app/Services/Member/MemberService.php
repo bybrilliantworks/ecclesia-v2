@@ -100,7 +100,7 @@ class MemberService implements MemberServiceInterface
     public function saveProfile(array $profileData): void
     {
         $member = $this->memberRepository->findByMobileNumber($profileData['mobile_number']);
-
+        $profileData['name'] = $profileData['first_name'] . " " . $profileData['last_name'];
         if ($member) {
             $this->memberRepository->updateMember($profileData, $member->id);
         }
