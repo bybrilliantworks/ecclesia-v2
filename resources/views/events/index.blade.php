@@ -37,9 +37,10 @@
                                     <thead>
                                     <tr>
                                         <th>Theme</th>
-                                        <th>Event Type</th>
+                                        <th>Category</th>
                                         <th>Date </th>
                                         <th>Venue</th>
+                                        <th>Total Attendance</th>
                                         <th>Tithe</th>
                                         <th>Offering</th>
                                         <th>Actions</th>
@@ -48,9 +49,10 @@
                                     <tfoot>
                                     <tr>
                                         <th>Theme</th>
-                                        <th>Event Type</th>
+                                        <th>Category</th>
                                         <th>Date </th>
                                         <th>Venue</th>
+                                        <th>Total Attendance</th>
                                         <th>Tithe</th>
                                         <th>Offering</th>
                                         <th>Actions</th>
@@ -61,8 +63,9 @@
                                     @foreach($data['events'] as $event)
                                         <tr>
                                             <td>{{$event->theme}}</td>
-                                            <td>{{$event->event_type_id}}</td>
+                                            <td>{{$event->category}}</td>
                                             <td>{{$event->event_date}}</td>
+                                            <td>{{$event->total_attendance}}</td>
                                             <td>{{$event->venue}}</td>
                                             <td>{{$event->total_offering}}</td>
                                             <td>{{$event->total_tithe}}</td>
@@ -78,57 +81,6 @@
                                                         <li><a href="{{url('events/' . $event->id . '/edit')}}">Edit</a></li>
                                                         <li role="separator" class="divider"></li>
                                                         <li><a href="{{url('events/' . $event->id . '/delete')}}">Delete</a></li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="panel panel-white">
-                        <div class="panel-heading clearfix">
-                            <h4 class="panel-title">All Events Types</h4>
-                        </div>
-                        <div class="panel-body">
-
-                            <div class="table-responsive">
-                                <table id="eventTypesTable" class="display table dataTable" style="width: 100%; cellspacing: 0;">
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
-                                    <tbody>
-
-                                    @foreach($data['event_types'] as $event_type)
-                                        <tr>
-                                            <td>{{$event_type->name}}</td>
-                                            <td>{{$event_type->description}}</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-xs btn-default">View</button>
-                                                    <button type="button" class="btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <span class="caret"></span>
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="{{url('members/' . $event_type->id . '/edit')}}">Edit</a></li>
-                                                        <li role="separator" class="divider"></li>
-                                                        <li><a href="{{url('members/' . $event_type->id . '/delete')}}">Delete</a></li>
                                                     </ul>
                                                 </div>
                                             </td>

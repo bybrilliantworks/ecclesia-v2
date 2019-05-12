@@ -22,7 +22,7 @@
         </div>
         <div id="main-wrapper">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="panel panel-white">
                         <div class="panel-heading clearfix">
                             <h4 class="panel-title">Create a new member account</h4>
@@ -113,12 +113,44 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="modeOfInvitation" class="control-label col-sm-2">Mode of Invitation</label>
+                                    <div class="col-sm-10">
+                                        <select name="mode_of_invitation" id="modeOfInvitation" class="form-control" required>
+                                            <option value="">Select...</option>
+                                            <option value="Friend/Family">Friend/Family</option>
+                                            <option value="Social Media">Social Media</option>
+                                            <option value="Flyer">Flyer</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="dateJoined" class="control-label col-sm-2">Date Joined</label>
                                     <div class="col-sm-10">
                                         <input type="date" name="date_joined" class="form-control" placeholder="Date joined" value="{{old('date_joined')}}">
 
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="invitedBy" class="control-label col-sm-2">Invited By</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="invited_by" class="form-control" placeholder="Invited by" value="{{ old('invited_by') }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="likeToJoinTheChurch" class="control-label col-sm-2">Like to join the church</label>
+                                    <div class="col-sm-10">
+                                        <select name="like_to_join_the_church" id="likeToJoinTheChurch" class="form-control" required>
+                                            <option value="">Select...</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                            <option value="Maybe">Maybe</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="membershipNumber" class="control-label col-sm-2">Membership Number</label>
                                     <div class="col-sm-10">
@@ -134,7 +166,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="panel panel-white">
                         <div class="panel-heading clearfix">
                             Bulk upload members

@@ -31,6 +31,9 @@ class Member extends Model
         'date_joined',
         'membership_number',
         'employment_status',
+        'mode_of_invitation',
+        'invited_by',
+        'like_to_join_the_church',
     ];
 
     public function validate(array $members)

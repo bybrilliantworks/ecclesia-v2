@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\Repositories\EventRepository;
-use App\Repositories\EventTypeRepository;
+use App\Services\Event\EventServiceInterface as EventService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,23 +12,16 @@ use Illuminate\Support\Facades\Validator;
 class EventController extends Controller
 {
     //
-    private $eventRepository;
-    private $eventTypeRepository;
+    private $eventService;
 
-    private $event;
-
-    public function __construct(EventTypeRepository $eventTypeRepository, EventRepository $eventRepository)
+    public function __construct(EventService $eventService)
     {
-        $this->eventTypeRepository = $eventTypeRepository;
-        $this->eventRepository = $eventRepository;
-        $this->event = new Event();
-
+        $this->eventService = $eventService;
     }
 
     public function index()
     {
-        $data['events'] = $this->eventRepository->fetchAll();
-        $data['event_types'] = $this->eventTypeRepository->fetchAll();
+        $data['events'] = $this->eventService->fetchAll();
 
         return view('events.index')->with(compact('data'));
     }
@@ -37,78 +29,78 @@ class EventController extends Controller
 
     public function create()
     {
-        $data['event_types'] = $this->eventTypeRepository->fetchAll();
+        $data['categories'] = [];
 
         return view('events.create')->with('data', $data);
 
     }
 
-    public function store(Request $request)
-    {
-        $validator = $this->event->validate($request->all());
+    // public function store(Request $request)
+    // {
+    //     $validator = $this->event->validate($request->all());
 
-        if ($validator->fails())
-        {
-            return back()->withErrors($validator)->withInput();
-        }
+    //     if ($validator->fails())
+    //     {
+    //         return back()->withErrors($validator)->withInput();
+    //     }
 
-        $event = $this->eventRepository->saveNew($request->all());
+    //     $event = $this->eventRepository->saveNew($request->all());
 
-        return redirect('events')->with('success', 'Event ' . $event->theme  . ' has been successfully created');
-    }
+    //     return redirect('events')->with('success', 'Event ' . $event->theme  . ' has been successfully created');
+    // }
 
-    public function show($id)
-    {
-
-
-    }
-
-    public function destroy($id)
-    {
-
-    }
+    // public function show($id)
+    // {
 
 
-    public function attendance($id)
-    {
-        
-        $event = $this->eventRepository->getEventAttendance($id);
-        
-        return view('events.attendance')->with('event', $event);
+    // }
 
-    }
+    // public function destroy($id)
+    // {
+
+    // }
 
 
-    public function checkIn(Request $request)
-    {
-        
-        $validator = Validator::make($request->only(['event_id', 'member_id']), ['event_id' => 'required|integer', 'member_id' => 'required|integer']);
+    // public function attendance($id)
+    // {
 
-        if ($validator->fails())
-        {
-            return back()->with('failure', 'Oops! An error occurred');
-        }
+    //     $event = $this->eventRepository->getEventAttendance($id);
 
-        $this->eventRepository->saveAttendance($request->get('event_id'), $request->get('member_id'));
+    //     return view('events.attendance')->with('event', $event);
 
-        return redirect('events/' . $request->get('event_id') . '/attendance')->with('success', 'Attendance has been recorded');
+    // }
 
-    }
 
-    public function undoCheckIn(Request $request)
-    {
-        $validator = Validator::make($request->only(['event_id', 'member_id']), ['event_id' => 'required|integer', 'member_id' => 'required|integer']);
+    // public function checkIn(Request $request)
+    // {
 
-        if ($validator->fails())
-        {
-            return back()->with('failure', 'Oops! An error occurred');
-        }
+    //     $validator = Validator::make($request->only(['event_id', 'member_id']), ['event_id' => 'required|integer', 'member_id' => 'required|integer']);
 
-        $this->eventRepository->removeAttendance($request->get('event_id'), $request->get('member_id'));
+    //     if ($validator->fails())
+    //     {
+    //         return back()->with('failure', 'Oops! An error occurred');
+    //     }
 
-        return redirect('events/' . $request->get('event_id') . '/attendance')->with('success', 'Attendance has been recorded');
+    //     $this->eventRepository->saveAttendance($request->get('event_id'), $request->get('member_id'));
 
-    }
+    //     return redirect('events/' . $request->get('event_id') . '/attendance')->with('success', 'Attendance has been recorded');
+
+    // }
+
+    // public function undoCheckIn(Request $request)
+    // {
+    //     $validator = Validator::make($request->only(['event_id', 'member_id']), ['event_id' => 'required|integer', 'member_id' => 'required|integer']);
+
+    //     if ($validator->fails())
+    //     {
+    //         return back()->with('failure', 'Oops! An error occurred');
+    //     }
+
+    //     $this->eventRepository->removeAttendance($request->get('event_id'), $request->get('member_id'));
+
+    //     return redirect('events/' . $request->get('event_id') . '/attendance')->with('success', 'Attendance has been recorded');
+
+    // }
 
 
 

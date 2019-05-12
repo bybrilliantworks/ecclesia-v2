@@ -5,10 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
-class EventType extends Model
+class EventCategory extends Model
 {
     //
-    
+
     public function rules()
     {
         return [
@@ -16,7 +16,7 @@ class EventType extends Model
             'description' => 'required|string'
         ];
     }
-    
+
     public function validate($eventType)
     {
         return Validator::make($eventType, $this->rules());

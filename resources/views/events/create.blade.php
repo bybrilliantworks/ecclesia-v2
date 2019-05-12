@@ -41,11 +41,11 @@
                             <form class="form form-horizontal" role="form" action="{{url('/events')}}" method="post">
                                 {!! csrf_field() !!}
                                 <div class="form-group">
-                                    <label for="eventType" class="control-label col-sm-2">Event Type</label>
+                                    <label for="eventType" class="control-label col-sm-2">Event Category</label>
                                     <div class="col-md-10">
                                         <select name="event_type" id="eventType" class="form-control col-md-6">
-                                            <option value="">Please select the type of event</option>
-                                            @foreach($data['event_types'] as $event_type)
+                                            <option value="">Please select the event category</option>
+                                            @foreach($data['categories'] as $event_type)
                                                 <option value="{{$event_type->id}}">{{$event_type->name}}</option>
                                             @endforeach
 
@@ -95,7 +95,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-white">
                         <div class="panel-heading clearfix">
-                            <h4 class="panel-title">Create a new event type</h4>
+                            <h4 class="panel-title">Create a new event category</h4>
                         </div>
                         <div class="panel-body">
                             <form class="form form-horizontal" role="form" action="{{url('/event_types')}}" method="post">

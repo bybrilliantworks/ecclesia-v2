@@ -128,6 +128,9 @@ class MemberService implements MemberServiceInterface
             'occupation' => $member['occupation'],
             'gender' => $member['gender'],
             'membership_number' => $member['membership_number'],
+            'mode_of_invitation' => $member['mode_of_invitation'],
+            'invited_by' => $member['invited_by'],
+            'like_to_join_the_church' => $member['like_to_join_the_church'],
         ];
     }
 }

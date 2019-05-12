@@ -29,6 +29,11 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\Member\MemberRepository'
         );
 
+        $this->app->bind(
+            'App\Repositories\Event\EventRepositoryInterface',
+            'App\Repositories\Event\EventRepository'
+        );
+
         // Services
         $this->app->bind(
             'App\Services\User\UserServiceInterface',
@@ -38,6 +43,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Services\Member\MemberServiceInterface',
             'App\Services\Member\MemberService'
+        );
+
+        $this->app->bind(
+            'App\Services\Event\EventServiceInterface',
+            'App\Services\Event\EventService'
         );
     }
 
