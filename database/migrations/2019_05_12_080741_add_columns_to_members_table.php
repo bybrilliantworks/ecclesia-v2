@@ -14,7 +14,7 @@ class AddColumnsToMembersTable extends Migration
     public function up()
     {
         Schema::table('members', function (Blueprint $table) {
-            $table->enum('mode_of_invitation', ['Friend/Family', 'Social Media', 'Fliers', 'Other'])->default('Other');
+            $table->enum('mode_of_invitation', ['Friend/Family', 'Social Media', 'Flyer', 'Other'])->default('Other');
             $table->string('invited_by')->nullable();
             $table->enum('like_to_join_the_church', ['Yes', 'No', 'Maybe'])->default('Yes');
         });
